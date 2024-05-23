@@ -28,7 +28,7 @@ class Product {
   @JsonKey(name: "color")
   List<Color> color;
   @JsonKey(name: "price")
-  String price;
+  int price;
   @JsonKey(name: "release_date")
   DateTime releaseDate;
   @JsonKey(name: "is_available")

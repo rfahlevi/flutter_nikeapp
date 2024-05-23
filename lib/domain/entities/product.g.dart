@@ -20,7 +20,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       color: (json['color'] as List<dynamic>)
           .map((e) => Color.fromJson(e as Map<String, dynamic>))
           .toList(),
-      price: json['price'] as String,
+      price: (json['price'] as num).toInt(),
       releaseDate: DateTime.parse(json['release_date'] as String),
       isAvailable: json['is_available'],
       createdAt: json['created_at'] as String,

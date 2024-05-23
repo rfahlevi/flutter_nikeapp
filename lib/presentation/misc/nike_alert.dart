@@ -14,11 +14,11 @@ class NikeAlert {
         forwardAnimationCurve: Curves.easeInCirc,
         reverseAnimationCurve: Curves.bounceIn,
         position: FlashPosition.top,
-        indicatorColor: Colors.black87,
-        backgroundColor: Colors.black87,
+        indicatorColor: const Color(0XFF198754),
+        backgroundColor: const Color(0XFF198754),
         icon: const Icon(Icons.error_rounded, color: Colors.white),
         title: Text(
-          'Sukses!',
+          'Success!',
           style: NikeFont.h4SemiBold().copyWith(color: Colors.white),
         ),
         content: Text(
@@ -43,7 +43,7 @@ class NikeAlert {
         backgroundColor: Colors.amber,
         icon: const Icon(Icons.error_rounded, color: Colors.black87),
         title: Text(
-          'Peringatan!',
+          'Warning!',
           style: NikeFont.h4SemiBold().copyWith(color: Colors.black87),
         ),
         content: Text(
@@ -68,7 +68,7 @@ class NikeAlert {
         backgroundColor: Colors.red,
         icon: const Icon(Icons.error_rounded, color: Colors.white),
         title: Text(
-          'Terjadi Kesalahan!',
+          'Error!',
           style: NikeFont.h4SemiBold().copyWith(color: Colors.white),
         ),
         content: Text(

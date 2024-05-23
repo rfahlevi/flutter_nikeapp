@@ -35,6 +35,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           break;
         case Failed(:final message):
           emit(_Failed(message: message));
+          break;
       }
     });
   }

@@ -47,257 +47,101 @@ class NikeLoading {
 
   static shimmer(BuildContext context) => Column(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                minVerticalPadding: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                splashColor: Colors.black87.withOpacity(0.2),
-                horizontalTitleGap: 7,
-                titleAlignment: ListTileTitleAlignment.center,
-                leading: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.withOpacity(0.2),
-                    highlightColor: Colors.grey.withOpacity(0.1),
-                    child: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                    ),
-                  ),
-                ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
+          Row(
+            children: List.generate(
+              4,
+              (index) => Container(
+                  width: MediaQuery.of(context).size.width / 6,
+                  height: MediaQuery.of(context).size.height / 3.5,
+                  margin: const EdgeInsets.only(right: 7),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(3),
+                      border: Border.all(
+                        color: Colors.grey[300]!,
+                      )),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height / 7,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey.withOpacity(0.2),
+                          highlightColor: Colors.grey.withOpacity(0.1),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                            child: Container(
+                              width: 20,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    verticalSpace(4),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 30,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey.withOpacity(0.2),
+                          highlightColor: Colors.grey.withOpacity(0.1),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                            child: Container(
+                              width: 20,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    verticalSpace(4),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 30,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey.withOpacity(0.2),
+                          highlightColor: Colors.grey.withOpacity(0.1),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                            child: Container(
+                              width: 20,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                trailing: Shimmer.fromColors(
-                  baseColor: Colors.grey.withOpacity(0.2),
-                  highlightColor: Colors.grey.withOpacity(0.1),
-                  child: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                ),
-              ),
-              verticalSpace(14),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                minVerticalPadding: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                splashColor: Colors.black87.withOpacity(0.2),
-                horizontalTitleGap: 7,
-                titleAlignment: ListTileTitleAlignment.center,
-                leading: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.withOpacity(0.2),
-                    highlightColor: Colors.grey.withOpacity(0.1),
-                    child: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                    ),
-                  ),
-                ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 30,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey.withOpacity(0.2),
+                          highlightColor: Colors.grey.withOpacity(0.1),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                            child: Container(
+                              width: 20,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    verticalSpace(4),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
-                        ),
-                      ),
-                    ),
-                    verticalSpace(4),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                trailing: Shimmer.fromColors(
-                  baseColor: Colors.grey.withOpacity(0.2),
-                  highlightColor: Colors.grey.withOpacity(0.1),
-                  child: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                ),
-              ),
-              verticalSpace(14),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                minVerticalPadding: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                splashColor: Colors.black87.withOpacity(0.2),
-                horizontalTitleGap: 7,
-                titleAlignment: ListTileTitleAlignment.center,
-                leading: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.withOpacity(0.2),
-                    highlightColor: Colors.grey.withOpacity(0.1),
-                    child: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                    ),
-                  ),
-                ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
-                        ),
-                      ),
-                    ),
-                    verticalSpace(4),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
-                        ),
-                      ),
-                    ),
-                    verticalSpace(4),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey.withOpacity(0.2),
-                      highlightColor: Colors.grey.withOpacity(0.1),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(36),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                trailing: Shimmer.fromColors(
-                  baseColor: Colors.grey.withOpacity(0.2),
-                  highlightColor: Colors.grey.withOpacity(0.1),
-                  child: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+                    ],
+                  )),
+            ),
           ),
-          verticalSpace(14),
         ],
       );
 
@@ -308,7 +152,7 @@ class NikeLoading {
           children: [
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                     width: 20,
                     height: 20,
                     child: CircularProgressIndicator(

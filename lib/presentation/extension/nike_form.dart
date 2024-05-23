@@ -43,7 +43,7 @@ class NikeForm extends StatelessWidget {
         if (withLabel == true)
           Text(
             label,
-            style: NikeFont.h4Regular().copyWith(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8)),
+            style: NikeFont.h4Regular().copyWith(color: Colors.black87),
           ),
         if (withLabel == true) verticalSpace(7),
         SizedBox(

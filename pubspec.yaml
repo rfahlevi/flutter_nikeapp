@@ -25,9 +25,13 @@ dependencies:
   shimmer: ^3.0.0
   flash: ^3.1.0
   image_picker: ^1.1.1
-  syncfusion_flutter_datepicker: ^25.2.4
   dropdown_search: ^5.0.6
-  lottie: ^3.1.2
+  internet_connection_checker_plus: ^2.3.0
+  sqflite: ^2.3.3+1
+  path_to_regexp: ^0.4.0
+  carousel_slider: ^4.2.1
+  flutter_easyloading: ^3.0.5
+  sqflite_common_ffi: ^2.3.3
 
 dev_dependencies:
   flutter_test:

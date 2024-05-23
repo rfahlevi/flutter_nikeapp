@@ -11,6 +11,7 @@ class SplashSercvice {
       const Duration(seconds: 3),
       () async {
         String? token = await AuthLocalDatasource().getToken();
+        print(token);
         if (context.mounted) {
           if (token == null) {
             context.goNamed(LoginPage.routerName);

@@ -45,6 +45,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick multiple image for product</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Pick multiple image for product</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Pick multiple image for product</string>
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

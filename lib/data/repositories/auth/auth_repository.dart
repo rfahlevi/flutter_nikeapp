@@ -9,4 +9,6 @@ abstract interface class AuthRepository {
   });
 
   Future<Result<bool>> logout();
+
+  Future<Result<User>> getUser();
 }

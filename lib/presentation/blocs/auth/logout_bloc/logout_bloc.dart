@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
 import 'package:flutter_nikeapp/domain/entities/result.dart';
 import 'package:flutter_nikeapp/domain/usecase/logout/logout.dart';
@@ -25,8 +24,10 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
       switch (result) {
         case Success(value: final hasLogout):
           emit(_Success(hasLogout: hasLogout));
+          break;
         case Failed(:final message):
           emit(_Failed(message: message));
+          break;
       }
     });
   }

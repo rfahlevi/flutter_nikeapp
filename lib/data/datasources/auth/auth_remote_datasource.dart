@@ -46,7 +46,7 @@ class AuthRemoteDatasource implements AuthRepository {
         return Result.failed(result['message']);
       }
     } on DioException catch (e) {
-      return Result.failed(e.response?.data ?? "Something went wrong");
+      return Result.failed(e.response?.data['message'] ?? "Something went wrong");
     }
   }
 
@@ -70,10 +70,47 @@ class AuthRemoteDatasource implements AuthRepository {
         await AuthLocalDatasource().removeToken();
         return const Result.success(true);
       } else {
+        await AuthLocalDatasource().removeAuthData();
+        await AuthLocalDatasource().removeToken();
         return Result.failed(result['message']);
       }
     } on DioException catch (e) {
-      return Result.failed(e.response?.statusMessage ?? "Something went wrong");
+      await AuthLocalDatasource().removeAuthData();
+      await AuthLocalDatasource().removeToken();
+      return Result.failed(e.response?.data['message'] ?? "Something went wrong");
+    }
+  }
+
+  @override
+  Future<Result<User>> getUser() async {
+    try {
+      String apiUrl = '$baseUrl/user';
+      String? token = await AuthLocalDatasource().getToken();
+
+      final response = await _dio.get(
+        apiUrl,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      final result = response.data;
+
+      if (result['status'] == true) {
+        return Result.success(User.fromJson(result['data']));
+      } else {
+        await AuthLocalDatasource().removeAuthData();
+        await AuthLocalDatasource().removeToken();
+        return Result.failed(result['message']);
+      }
+    } on DioException catch (e) {
+      await AuthLocalDatasource().removeAuthData();
+      await AuthLocalDatasource().removeToken();
+      return Result.failed(e.response?.data['message'] ?? "Something went wrong");
     }
   }
 }
