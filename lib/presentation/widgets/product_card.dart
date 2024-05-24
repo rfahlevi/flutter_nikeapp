@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:flutter_nikeapp/domain/entities/product.dart' as p;
 import 'package:flutter_nikeapp/presentation/pages/product/detail-product/detail_product_page.dart';
@@ -39,14 +40,29 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.network(
-                product.image[0].imageUrl,
-                fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height / 6,
-                width: double.infinity,
-              ),
+            Stack(
+              fit: StackFit.loose,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: Image.network(
+                    product.image[0].imageUrl,
+                    fit: BoxFit.cover,
+                    height: MediaQuery.of(context).size.height / 6,
+                    width: double.infinity,
+                  ),
+                ),
+                if (product.isAvailable == true)
+                  Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Image.asset(
+                        'assets/img/img_featured.png',
+                        width: 30,
+                        height: 30,
+                        fit: BoxFit.cover,
+                      )),
+              ],
             ),
             verticalSpace(7),
             Text(

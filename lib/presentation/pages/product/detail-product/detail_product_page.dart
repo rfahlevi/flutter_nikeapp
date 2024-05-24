@@ -73,7 +73,22 @@ class DetailProductPage extends StatelessWidget {
                       product.category.name,
                       style: NikeFont.h4Regular(),
                     ),
-                    verticalSpace(14),
+                    verticalSpace(product.isAvailable ? 7 : 14),
+                    if (product.isAvailable)
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 7),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.amber,
+                        ),
+                        child: Text(
+                          'Featured Product',
+                          style: NikeFont.h5SemiBold().copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     Text(
                       rupiahFormatter(product.price.toString()),
                       style: NikeFont.h3SemiBold().copyWith(

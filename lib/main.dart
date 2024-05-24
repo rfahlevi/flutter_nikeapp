@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +14,9 @@ import 'package:flutter_nikeapp/presentation/blocs/product-category/bloc/get_pro
 import 'package:flutter_nikeapp/presentation/misc/nike_font.dart';
 import 'package:flutter_nikeapp/router/router.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
+import 'helper/const.dart';
 import 'presentation/blocs/product/get_products_bloc/get_products_bloc.dart';
 
 void main() {
@@ -25,6 +29,12 @@ void main() {
     DeviceOrientation.landscapeRight,
   ]);
   initializeDateFormatting();
+
+  if (Platform.isWindows) {
+    databaseFactory = databaseFactoryFfi;
+  }
+
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
