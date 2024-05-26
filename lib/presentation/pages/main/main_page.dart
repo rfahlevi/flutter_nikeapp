@@ -26,6 +26,8 @@ class _MainPageState extends State<MainPage> {
   String? userName;
   bool isNext = false;
 
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+
   @override
   void initState() {
     Future.delayed(
@@ -96,13 +98,27 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView(
-            controller: scrollC,
-            children: [
-              ...header(context: context, userName: userName),
-              ...searchProducts(context: context, searchC: searchC),
-              ...productsGrid(),
-            ],
+          child: RefreshIndicator(
+            key: refreshIndicatorKey,
+            backgroundColor: Colors.white,
+            color: Colors.black87,
+            strokeWidth: 3,
+            onRefresh: () async {
+              await Future.delayed(
+                const Duration(seconds: 0),
+                () {
+                  context.read<GetProductsBloc>().add(const GetProductsEvent.getFirst(productSearch: ''));
+                },
+              );
+            },
+            child: ListView(
+              controller: scrollC,
+              children: [
+                ...header(context: context, userName: userName),
+                ...searchProducts(context: context, searchC: searchC),
+                ...productsGrid(),
+              ],
+            ),
           ),
         ),
       ),

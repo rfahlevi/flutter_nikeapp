@@ -14,7 +14,7 @@ import 'package:flutter_nikeapp/helper/directory_path.dart';
 import 'package:flutter_nikeapp/helper/internet_check.dart';
 import 'package:flutter_nikeapp/helper/product_table.dart';
 import 'package:flutter_nikeapp/helper/sqflite_helper.dart';
-import 'package:path/path.dart' as path;
+import 'package:path/path.dart' as p;
 
 class ProductRemoteDatasource implements ProductRepository {
   final Dio _dio;
@@ -38,12 +38,13 @@ class ProductRemoteDatasource implements ProductRepository {
   }) async {
     try {
       bool hasInternet = await InternetChecker.hasInternetConnection();
+      DirectoryPath dirPath = DirectoryPath();
+      final folderPath = await dirPath.getPath();
 
       if (hasInternet) {
         String apiUrl = '$baseUrl/products';
         String? token = await AuthLocalDatasource().getToken();
-        DirectoryPath dirPath = DirectoryPath();
-        var folderPath = await dirPath.getPath();
+        List<ProductTable> productsFromLocal = await SqfliteHelper().getProducts(search: '');
 
         slug = '${name.replaceAll(' ', '-').toLowerCase()}-${DateTime.now().millisecondsSinceEpoch}';
 
@@ -64,7 +65,8 @@ class ProductRemoteDatasource implements ProductRepository {
             [
               MapEntry(
                 "image[]",
-                await MultipartFile.fromFile('$folderPath/${path.basename(image)}'),
+                await MultipartFile.fromFile(
+                    productsFromLocal.isNotEmpty ? '$folderPath/${p.basename(image)}' : File(image).path),
               ),
             ],
           );

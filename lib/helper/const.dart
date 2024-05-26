@@ -1,7 +1,7 @@
 import 'dart:io';
 
 class NikeConst {
-  static String baseUrl = 'http://laravel11-nikeapp.test/api';
+  static String baseUrl = 'https://laravel11-nikeapp.test/api';
 }
 
 class MyHttpOverrides extends HttpOverrides {
