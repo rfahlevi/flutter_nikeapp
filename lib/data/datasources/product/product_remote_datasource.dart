@@ -35,6 +35,7 @@ class ProductRemoteDatasource implements ProductRepository {
     required int isAvailable,
     required int price,
     required String description,
+    required bool isSyncData,
   }) async {
     try {
       bool hasInternet = await InternetChecker.hasInternetConnection();
@@ -44,7 +45,6 @@ class ProductRemoteDatasource implements ProductRepository {
       if (hasInternet) {
         String apiUrl = '$baseUrl/products';
         String? token = await AuthLocalDatasource().getToken();
-        List<ProductTable> productsFromLocal = await SqfliteHelper().getProducts(search: '');
 
         slug = '${name.replaceAll(' ', '-').toLowerCase()}-${DateTime.now().millisecondsSinceEpoch}';
 
@@ -66,7 +66,7 @@ class ProductRemoteDatasource implements ProductRepository {
               MapEntry(
                 "image[]",
                 await MultipartFile.fromFile(
-                    productsFromLocal.isNotEmpty ? '$folderPath/${p.basename(image)}' : File(image).path),
+                    isSyncData == true ? '$folderPath/${p.basename(image)}' : File(image).path),
               ),
             ],
           );

@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class AddProductParams {
   final int productCategoryId;
   final String name;
@@ -9,6 +10,7 @@ class AddProductParams {
   final int isAvailable;
   final int price;
   final String description;
+  final bool isSyncData;
 
   AddProductParams({
     required this.productCategoryId,
@@ -21,5 +23,6 @@ class AddProductParams {
     required this.isAvailable,
     required this.price,
     required this.description,
+    required this.isSyncData,
   });
 }

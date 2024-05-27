@@ -18,5 +18,6 @@ abstract interface class ProductRepository {
     required int isAvailable,
     required int price,
     required String description,
+    required bool isSyncData,
   });
 }

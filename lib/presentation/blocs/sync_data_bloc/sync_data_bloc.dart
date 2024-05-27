@@ -95,6 +95,7 @@ class SyncDataBloc extends Bloc<SyncDataEvent, SyncDataState> {
                 isAvailable: productsFromLocal[i].isAvailable,
                 price: productsFromLocal[i].price,
                 description: productsFromLocal[i].description,
+                isSyncData: true,
               ),
             );
 

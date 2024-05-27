@@ -33,6 +33,7 @@ class AddProductBloc extends Bloc<AddProductEvent, AddProductState> {
           isAvailable: event.isAvailable,
           price: event.price,
           description: event.description,
+          isSyncData: event.isSyncData,
         ),
       );
 

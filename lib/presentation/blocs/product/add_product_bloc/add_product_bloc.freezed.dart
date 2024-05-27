@@ -26,6 +26,7 @@ mixin _$AddProductEvent {
   int get isAvailable => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  bool get isSyncData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -38,7 +39,8 @@ mixin _$AddProductEvent {
             String releaseDate,
             int isAvailable,
             int price,
-            String description)
+            String description,
+            bool isSyncData)
         doAdd,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +56,8 @@ mixin _$AddProductEvent {
             String releaseDate,
             int isAvailable,
             int price,
-            String description)?
+            String description,
+            bool isSyncData)?
         doAdd,
   }) =>
       throw _privateConstructorUsedError;
@@ -70,7 +73,8 @@ mixin _$AddProductEvent {
             String releaseDate,
             int isAvailable,
             int price,
-            String description)?
+            String description,
+            bool isSyncData)?
         doAdd,
     required TResult orElse(),
   }) =>
@@ -113,7 +117,8 @@ abstract class $AddProductEventCopyWith<$Res> {
       String releaseDate,
       int isAvailable,
       int price,
-      String description});
+      String description,
+      bool isSyncData});
 }
 
 /// @nodoc
@@ -139,6 +144,7 @@ class _$AddProductEventCopyWithImpl<$Res, $Val extends AddProductEvent>
     Object? isAvailable = null,
     Object? price = null,
     Object? description = null,
+    Object? isSyncData = null,
   }) {
     return _then(_value.copyWith(
       productCategoryId: null == productCategoryId
@@ -181,6 +187,10 @@ class _$AddProductEventCopyWithImpl<$Res, $Val extends AddProductEvent>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      isSyncData: null == isSyncData
+          ? _value.isSyncData
+          : isSyncData // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -203,7 +213,8 @@ abstract class _$$DoAddImplCopyWith<$Res>
       String releaseDate,
       int isAvailable,
       int price,
-      String description});
+      String description,
+      bool isSyncData});
 }
 
 /// @nodoc
@@ -227,6 +238,7 @@ class __$$DoAddImplCopyWithImpl<$Res>
     Object? isAvailable = null,
     Object? price = null,
     Object? description = null,
+    Object? isSyncData = null,
   }) {
     return _then(_$DoAddImpl(
       productCategoryId: null == productCategoryId
@@ -269,6 +281,10 @@ class __$$DoAddImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      isSyncData: null == isSyncData
+          ? _value.isSyncData
+          : isSyncData // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -286,7 +302,8 @@ class _$DoAddImpl implements _DoAdd {
       required this.releaseDate,
       required this.isAvailable,
       required this.price,
-      required this.description})
+      required this.description,
+      required this.isSyncData})
       : _size = size,
         _color = color,
         _images = images;
@@ -329,10 +346,12 @@ class _$DoAddImpl implements _DoAdd {
   final int price;
   @override
   final String description;
+  @override
+  final bool isSyncData;
 
   @override
   String toString() {
-    return 'AddProductEvent.doAdd(productCategoryId: $productCategoryId, name: $name, slug: $slug, size: $size, color: $color, images: $images, releaseDate: $releaseDate, isAvailable: $isAvailable, price: $price, description: $description)';
+    return 'AddProductEvent.doAdd(productCategoryId: $productCategoryId, name: $name, slug: $slug, size: $size, color: $color, images: $images, releaseDate: $releaseDate, isAvailable: $isAvailable, price: $price, description: $description, isSyncData: $isSyncData)';
   }
 
   @override
@@ -353,7 +372,9 @@ class _$DoAddImpl implements _DoAdd {
                 other.isAvailable == isAvailable) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.isSyncData, isSyncData) ||
+                other.isSyncData == isSyncData));
   }
 
   @override
@@ -368,7 +389,8 @@ class _$DoAddImpl implements _DoAdd {
       releaseDate,
       isAvailable,
       price,
-      description);
+      description,
+      isSyncData);
 
   @JsonKey(ignore: true)
   @override
@@ -389,11 +411,12 @@ class _$DoAddImpl implements _DoAdd {
             String releaseDate,
             int isAvailable,
             int price,
-            String description)
+            String description,
+            bool isSyncData)
         doAdd,
   }) {
     return doAdd(productCategoryId, name, slug, size, color, images,
-        releaseDate, isAvailable, price, description);
+        releaseDate, isAvailable, price, description, isSyncData);
   }
 
   @override
@@ -409,11 +432,12 @@ class _$DoAddImpl implements _DoAdd {
             String releaseDate,
             int isAvailable,
             int price,
-            String description)?
+            String description,
+            bool isSyncData)?
         doAdd,
   }) {
     return doAdd?.call(productCategoryId, name, slug, size, color, images,
-        releaseDate, isAvailable, price, description);
+        releaseDate, isAvailable, price, description, isSyncData);
   }
 
   @override
@@ -429,13 +453,14 @@ class _$DoAddImpl implements _DoAdd {
             String releaseDate,
             int isAvailable,
             int price,
-            String description)?
+            String description,
+            bool isSyncData)?
         doAdd,
     required TResult orElse(),
   }) {
     if (doAdd != null) {
       return doAdd(productCategoryId, name, slug, size, color, images,
-          releaseDate, isAvailable, price, description);
+          releaseDate, isAvailable, price, description, isSyncData);
     }
     return orElse();
   }
@@ -480,7 +505,8 @@ abstract class _DoAdd implements AddProductEvent {
       required final String releaseDate,
       required final int isAvailable,
       required final int price,
-      required final String description}) = _$DoAddImpl;
+      required final String description,
+      required final bool isSyncData}) = _$DoAddImpl;
 
   @override
   int get productCategoryId;
@@ -502,6 +528,8 @@ abstract class _DoAdd implements AddProductEvent {
   int get price;
   @override
   String get description;
+  @override
+  bool get isSyncData;
   @override
   @JsonKey(ignore: true)
   _$$DoAddImplCopyWith<_$DoAddImpl> get copyWith =>

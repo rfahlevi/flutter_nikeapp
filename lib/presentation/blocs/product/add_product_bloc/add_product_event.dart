@@ -13,5 +13,6 @@ class AddProductEvent with _$AddProductEvent {
     required int isAvailable,
     required int price,
     required String description,
+    required bool isSyncData,
   }) = _DoAdd;
 }

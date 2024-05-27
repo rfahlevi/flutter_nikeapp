@@ -120,6 +120,7 @@ class _AddProductPageState extends State<AddProductPage> {
                               isAvailable: selectedFeatured!,
                               price: int.parse(priceC.text),
                               description: descC.text,
+                              isSyncData: false,
                             ),
                           );
                     }

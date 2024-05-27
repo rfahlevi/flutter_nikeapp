@@ -21,6 +21,7 @@ class AddProduct implements Usecase<Result<String>, AddProductParams> {
       isAvailable: params.isAvailable,
       price: params.price,
       description: params.description,
+      isSyncData: params.isSyncData,
     );
 
     return switch (result) {
