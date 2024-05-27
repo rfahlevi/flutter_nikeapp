@@ -28,6 +28,7 @@ void main() {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
+
   initializeDateFormatting();
 
   if (Platform.isWindows) {

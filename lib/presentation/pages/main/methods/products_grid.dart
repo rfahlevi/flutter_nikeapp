@@ -19,36 +19,37 @@ List<Widget> productsGrid() => [
       BlocBuilder<GetProductsBloc, GetProductsState>(
         builder: (context, state) {
           return state.maybeWhen(
-              orElse: () => NikeLoading.shimmer(context),
-              failed: (message) => Text(message),
-              success: (products, isNext) {
-                if (products.isEmpty) {
-                  return const EmptyData();
-                } else {
-                  return Column(
-                    children: [
-                      GridView.builder(
-                        shrinkWrap: true,
-                        itemCount: products.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 5, crossAxisSpacing: 14, mainAxisSpacing: 14, childAspectRatio: 0.8),
-                        itemBuilder: (context, index) {
-                          return ProductCard(
-                            product: products[index],
-                            onTap: () => context.goNamed(
-                              DetailProductPage.routerName,
-                              extra: products[index],
-                            ),
-                          );
-                        },
-                      ),
-                      if (isNext) NikeLoading.loadData(context),
-                      if (!isNext) NikeLoading.noDataMore(context)
-                    ],
-                  );
-                }
-              });
+            orElse: () => NikeLoading.shimmer(context),
+            failed: (message) => Text(message),
+            success: (products, isNext) {
+              if (products.isEmpty) {
+                return const EmptyData();
+              } else {
+                return Column(
+                  children: [
+                    GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: products.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 5, crossAxisSpacing: 14, mainAxisSpacing: 14, childAspectRatio: 0.8),
+                      itemBuilder: (context, index) {
+                        return ProductCard(
+                          product: products[index],
+                          onTap: () => context.goNamed(
+                            DetailProductPage.routerName,
+                            extra: products[index],
+                          ),
+                        );
+                      },
+                    ),
+                    if (isNext) NikeLoading.loadData(context),
+                    if (!isNext) NikeLoading.noDataMore(context)
+                  ],
+                );
+              }
+            },
+          );
         },
       ),
     ];

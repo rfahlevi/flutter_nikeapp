@@ -103,15 +103,16 @@ class DetailProductPage extends StatelessWidget {
                     verticalSpace(4),
                     Row(
                       children: List.generate(product.color.length, (index) {
-                        String hexColor = '0XFF${product.color[index].hexCode}';
-
+                        String hexColor = product.color[index].hexCode.contains('#')
+                            ? product.color[index].hexCode.substring(1)
+                            : product.color[index].hexCode;
                         return Container(
                           width: 30,
                           height: 30,
                           margin: const EdgeInsets.only(right: 7),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(int.parse(hexColor)),
+                            color: Color(int.parse('0XFF$hexColor')),
                             border: Border.all(
                               color: Colors.grey,
                             ),

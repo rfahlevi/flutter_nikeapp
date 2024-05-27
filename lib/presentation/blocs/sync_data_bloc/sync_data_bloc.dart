@@ -100,6 +100,10 @@ class SyncDataBloc extends Bloc<SyncDataEvent, SyncDataState> {
 
             switch (result) {
               case Success(value: _):
+                for (var i = 0; i < imageList.length; i++) {
+                  await File('$folderPath/${path.basename(imageList[i])}').delete();
+                }
+
                 await SqfliteHelper().deleteProduct(productsFromLocal[i].id!);
               case Failed(:final message):
                 log(message);
@@ -114,9 +118,6 @@ class SyncDataBloc extends Bloc<SyncDataEvent, SyncDataState> {
         }
 
         if (productFinished == true && productCategoryFinished == true) {
-          for (var image in imageList) {
-            await File('$folderPath/${path.basename(image)}').delete();
-          }
           emit(const _Success(message: 'Sync data success!'));
         } else {
           emit(const _Failed(message: 'Sync data failed!'));
