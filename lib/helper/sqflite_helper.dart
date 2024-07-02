@@ -1,6 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_nikeapp/domain/entities/product.dart';
@@ -47,9 +46,7 @@ class SqfliteHelper {
   // CRUD PRODUCTS
   Future<List<ProductTable>> getProducts({String? search}) async {
     Database db = await init();
-    log('$search');
     List<Map<String, dynamic>> result = await db.query(productTable);
-    log('$result');
     List<ProductTable> products = result.map((e) => ProductTable.fromJson(e)).toList();
     return products;
   }

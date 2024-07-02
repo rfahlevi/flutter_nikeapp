@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nikeapp/domain/entities/product.dart' as category;
+import 'package:flutter_nikeapp/helper/internet_check.dart';
 import 'package:flutter_nikeapp/presentation/blocs/product-category/bloc/get_product_categories_bloc.dart';
 import 'package:flutter_nikeapp/presentation/blocs/product/add_product_bloc/add_product_bloc.dart';
 import 'package:flutter_nikeapp/presentation/misc/nike_alert.dart';
@@ -62,9 +65,13 @@ class _AddProductPageState extends State<AddProductPage> {
       listener: (context, state) {
         state.maybeWhen(
           orElse: () {},
-          success: (message) {
+          success: (message) async {
             NikeAlert.successful(context: context, content: message);
-            context.read<GetProductsBloc>().add(const GetProductsEvent.getFirst(productSearch: ''));
+            bool hasInternet = await InternetChecker.hasInternetConnection();
+
+            if (hasInternet) {
+              context.read<GetProductsBloc>().add(const GetProductsEvent.getFirst(productSearch: ''));
+            }
             context.pop();
           },
           failed: (message) {

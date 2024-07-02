@@ -1,15 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_nikeapp/helper/sqflite_helper.dart';
 import 'package:flutter_nikeapp/presentation/blocs/auth/logout_bloc/logout_bloc.dart';
 import 'package:flutter_nikeapp/presentation/blocs/product/get_products_bloc/get_products_bloc.dart';
+import 'package:flutter_nikeapp/presentation/blocs/sync_data_bloc/sync_data_bloc.dart';
 import 'package:flutter_nikeapp/presentation/misc/nike_alert.dart';
 import 'package:flutter_nikeapp/presentation/pages/login/login_page.dart';
 import 'package:flutter_nikeapp/presentation/pages/main/methods/header.dart';
 import 'package:flutter_nikeapp/presentation/pages/main/methods/products_grid.dart';
 import 'package:flutter_nikeapp/presentation/pages/main/methods/search_products.dart';
 import 'package:go_router/go_router.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
-import '../../../data/datasources/auth/auth_local_datasource.dart';
+import '../../../helper/product_table.dart';
 import '../../blocs/auth/get-user-bloc/get_user_bloc.dart';
 
 class MainPage extends StatefulWidget {
@@ -21,26 +27,29 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  ScrollController scrollC = ScrollController();
   TextEditingController searchC = TextEditingController();
-  String? userName;
+  ScrollController scrollC = ScrollController();
   bool isNext = false;
 
   final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
+  List<ProductTable> productsFromLocal = [];
+  StreamSubscription? internetListener;
+
   @override
   void initState() {
-    Future.delayed(
-      const Duration(seconds: 0),
-      () async {
-        final authData = await AuthLocalDatasource().getAuthData();
-        setState(() {
-          userName = authData?.name;
-        });
-      },
-    );
-    context.read<GetProductsBloc>().add(const GetProductsEvent.getFirst(productSearch: ''));
     context.read<GetUserBloc>().add(const GetUserEvent.doGet());
+
+    internetListener = InternetConnection().onStatusChange.listen((event) async {
+      if (event == InternetStatus.connected) {
+        productsFromLocal = await SqfliteHelper().getProducts();
+        if (productsFromLocal.isNotEmpty && mounted) {
+          context.read<SyncDataBloc>().add(const SyncDataEvent.doSync());
+        } else if (mounted) {
+          context.read<GetProductsBloc>().add(const GetProductsEvent.getFirst(productSearch: ''));
+        }
+      }
+    });
 
     scrollC.addListener(() {
       if (scrollC.position.maxScrollExtent == scrollC.offset) {
@@ -57,6 +66,7 @@ class _MainPageState extends State<MainPage> {
   void dispose() {
     searchC.dispose();
     scrollC.dispose();
+    internetListener?.cancel();
     super.dispose();
   }
 
@@ -94,6 +104,19 @@ class _MainPageState extends State<MainPage> {
             );
           },
         ),
+        BlocListener<SyncDataBloc, SyncDataState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              orElse: () {},
+              loading: () => EasyLoading.show(status: 'Syncing data on progress..'),
+              failed: (message) => EasyLoading.showError(message),
+              success: (message) {
+                EasyLoading.showSuccess(message);
+                context.read<GetProductsBloc>().add(const GetProductsEvent.getFirst(productSearch: ''));
+              },
+            );
+          },
+        ),
       ],
       child: Scaffold(
         body: Padding(
@@ -114,7 +137,7 @@ class _MainPageState extends State<MainPage> {
             child: ListView(
               controller: scrollC,
               children: [
-                ...header(context: context, userName: userName),
+                ...header(context: context),
                 ...searchProducts(context: context, searchC: searchC),
                 ...productsGrid(),
               ],

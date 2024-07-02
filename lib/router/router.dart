@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nikeapp/data/datasources/auth/auth_remote_datasource.dart';
-import 'package:flutter_nikeapp/data/datasources/product-category/product_category_remote_datasource.dart';
 import 'package:flutter_nikeapp/data/datasources/product/product_remote_datasource.dart';
 import 'package:flutter_nikeapp/domain/entities/product.dart';
 import 'package:flutter_nikeapp/presentation/blocs/auth/login_bloc/login_bloc.dart';
 import 'package:flutter_nikeapp/presentation/blocs/product/add_product_bloc/add_product_bloc.dart';
-import 'package:flutter_nikeapp/presentation/blocs/sync_data_bloc/sync_data_bloc.dart';
 import 'package:flutter_nikeapp/presentation/pages/login/login_page.dart';
 import 'package:flutter_nikeapp/presentation/pages/main/main_page.dart';
 import 'package:flutter_nikeapp/presentation/pages/product/add-product/add_product_page.dart';
@@ -99,13 +97,7 @@ final router = GoRouter(
             pageBuilder: (context, state) => buildPageWithDefaultTransition(
               context: context,
               state: state,
-              child: BlocProvider(
-                create: (context) => SyncDataBloc(
-                  ProductRemoteDatasource(),
-                  ProductCategoryRemoteDatasource(),
-                ),
-                child: const OutBoxPage(),
-              ),
+              child: const OutBoxPage(),
             ),
           ),
         ]),

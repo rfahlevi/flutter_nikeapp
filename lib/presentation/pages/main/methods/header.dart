@@ -5,13 +5,13 @@ import 'package:flutter_nikeapp/presentation/pages/product/add-product/add_produ
 import 'package:flutter_nikeapp/presentation/pages/product/outbox/outbox_page.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../blocs/auth/get-user-bloc/get_user_bloc.dart';
 import '../../../blocs/auth/logout_bloc/logout_bloc.dart';
 import '../../../misc/nike_font.dart';
 import '../../../misc/spacing.dart';
 
 List<Widget> header({
   required BuildContext context,
-  required String? userName,
 }) =>
     [
       Row(
@@ -20,9 +20,19 @@ List<Widget> header({
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Hai, ${userName ?? '....'}',
-                style: NikeFont.h3Medium(),
+              BlocBuilder<GetUserBloc, GetUserState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () => Text(
+                      'Hai, ...',
+                      style: NikeFont.h3Medium(),
+                    ),
+                    success: (user) => Text(
+                      'Hai, ${user.name}',
+                      style: NikeFont.h3Medium(),
+                    ),
+                  );
+                },
               ),
               Text(
                 'Welcome back to Nike App',

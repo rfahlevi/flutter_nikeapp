@@ -22,7 +22,7 @@ class NikeLoading {
             width: 20,
             height: 20,
             child: CircularProgressIndicator(
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           horizontalSpaces(14),

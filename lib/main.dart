@@ -11,6 +11,7 @@ import 'package:flutter_nikeapp/helper/sqflite_helper.dart';
 import 'package:flutter_nikeapp/presentation/blocs/auth/get-user-bloc/get_user_bloc.dart';
 import 'package:flutter_nikeapp/presentation/blocs/auth/logout_bloc/logout_bloc.dart';
 import 'package:flutter_nikeapp/presentation/blocs/product-category/bloc/get_product_categories_bloc.dart';
+import 'package:flutter_nikeapp/presentation/blocs/sync_data_bloc/sync_data_bloc.dart';
 import 'package:flutter_nikeapp/presentation/misc/nike_font.dart';
 import 'package:flutter_nikeapp/router/router.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -61,6 +62,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(create: (context) => GetUserBloc(AuthRemoteDatasource())),
         BlocProvider(create: (context) => GetProductsBloc(ProductRemoteDatasource())),
+        BlocProvider(create: (context) => SyncDataBloc(ProductRemoteDatasource(), ProductCategoryRemoteDatasource())),
         BlocProvider(create: (context) => GetProductCategoriesBloc(ProductCategoryRemoteDatasource())),
         BlocProvider(create: (context) => LogoutBloc(AuthRemoteDatasource())),
       ],
